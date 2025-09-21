@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+html(lang="en")
+  
+  include ../includes/head.pug
+
+  body
+    if showNavbar !== false
+        include ../includes/navbar.pug
+
+    .container.pt-100.mb-5
+        block content
+
+    if showNavbar !== false
+        include ../includes/footer.pug
+
+    include ../includes/script.pug
+    block scripts

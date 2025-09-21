@@ -1,0 +1,27 @@
+mixin createTask(task)
+  .task.d-flex.align-items-center.w-100
+    form(action="/confirm-task" method="POST").me-2
+      input(type="hidden" name="taskId" value=task._id)
+      if task.isCompleted
+        button(type="submit" class="btn p-0 border-0 bg-transparent")
+          i.fa-solid.fa-check-circle.text-success
+      else
+        button(type="submit" class="btn p-0 border-0 bg-transparent")
+          i.fa-regular.fa-circle
+
+    span.flex-grow-1.text-truncate.ms-2= task.taskName
+    span.badge.priority.ms-2(
+      class=task.priority === 'Yüksek' ? 'bg-danger' : task.priority === 'Orta' ? 'bg-warning text-white' : 'bg-dark'
+    )= task.priority
+    - const formattedDate = new Date(task.endAt).toISOString().split('T')[0];
+    span.badge.bg-date.ms-2= formattedDate
+
+    .ms-3.d-flex.align-items-center.gap-2
+      if !task.isCompleted
+          a(href=`/edit-task/${task._id}?sort=${sort || ''}`)
+            i.fa-solid.fa-pen
+      form(action=`/delete-task/${task._id}` method='POST')
+        input(type="hidden" name="taskId" value=task._id)
+        input(type="hidden" name="sort" value=sort)
+        button(type="submit" class="btn p-0 border-0 bg-transparent")
+          i.fa-solid.fa-trash

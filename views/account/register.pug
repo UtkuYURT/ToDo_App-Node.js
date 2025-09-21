@@ -1,0 +1,30 @@
+extends ../layouts/main-layout
+
+block content
+    if errorMessage
+        .alert.alert-danger.alert-dismissible.fade.show.my-3(role="alert" id="errorMessage")
+            | #{errorMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .card.login-card
+        .card-body
+            h4.mb-3 Kayıt olun
+            form(action="/register" method="POST")
+                //- input(type="hidden" name="_csrf" value=csrfToken)
+                .form.row
+                    .col-sm-12
+                        input(type="text" name="name" placeholder="Ad - Soyad" value=(values && values.name) ? values.name : "")#name.form-input
+                .form-group.row.mt-3
+                    .col-sm-12
+                        input(type="email" name="email" placeholder="Email" value=(values && values.email) ? values.email : "")#email.form-input
+                .form-group.row.mt-3
+                    .col-sm-12
+                        input(type="password" name="password" placeholder="Şifre" value=(values && values.password) ? values.password : "")#password.form-input
+                .form-group.row.mt-3
+                    .col-sm-12
+                        input(type="password" name="confirm_password" placeholder="Şifre Tekrar" value=(values && values.confirmPassword) ? values.confirmPassword : "")#confirm_password.form-input
+                .form-group.row.mt-3
+                    a(href="/login").rl-link Zaten bir hesabınız var mı? Giriş yap.
+                .form-group.row.mt-3
+                    .text-end
+                        button.btn.btn-submit(type="submit") Kayıt Ol

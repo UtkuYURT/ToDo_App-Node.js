@@ -1,0 +1,22 @@
+extends ../layouts/main-layout
+
+block content
+    .row.my-5
+        .col-md-3
+            include ../includes/profile-sidebar.pug
+        .col-md-9
+            .card
+                .card-header
+                    h4 Profil Güncelleme
+                .card-body
+                    form(action="/update-profile" method="POST")
+                        input(type="hidden" name="userId" value=user._id)
+                        .mb-3.d-flex.align-items-center.gap-3
+                            label(for="name") Kullanıcı Adı:
+                            input.form-update(type="text" id="name" name="name" value=user.name required)
+                        .mb-3.d-flex.align-items-center.gap-3
+                            label(for="email") E-posta:
+                            input.form-update(type="email" id="email" name="email" value=user.email required)
+                            
+                        .d-flex.gap-2
+                            button.btn.btn-submit(type="submit") Güncelle

@@ -1,0 +1,29 @@
+extends ../layouts/main-layout
+
+block content
+    if errorMessage
+        .alert.alert-danger.alert-dismissible.fade.show.my-3(role="alert" id="errorMessage")
+            | #{errorMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .card.my-5
+        .card-header
+            h4 Görev Ekle
+        .card-body
+            form(action='/add-task', method='POST')
+                input(type="hidden" name="sort" value=sort)
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="taskName") Görev Tanımı:
+                    input.form-update(type="text" id="taskName" name="taskName" required value=(values && values.taskName) ? values.taskName : "")
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="priority") Öncelik:
+                    select.form-update(name="priority" id="priority" required value=(values && values.priority) ? values.priority : "")
+                        option(value="Düşük") Düşük
+                        option(value="Orta") Orta
+                        option(value="Yüksek") Yüksek
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="endAt") Son Tarih:
+                    input.form-update(type="date" id="endAt" name="endAt" required)
+
+                .d-flex.gap-2
+                    button.btn.btn-submit(type="submit") Ekle

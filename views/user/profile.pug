@@ -1,0 +1,42 @@
+extends ../layouts/main-layout
+
+block content
+    if successMessage
+        .alert.alert-success.alert-dismissible.fade.show.my-3(role="alert" id="successMessage") 
+            | #{successMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .row.my-5
+        .col-md-3
+            include ../includes/profile-sidebar.pug
+        .col-md-9
+            .card
+                .card-header
+                    h4 Kullanıcı Profili
+                .card-body
+                    .row.mb-3
+                        .col-sm-3
+                            strong Kullanıcı Adı:
+                        .col-sm-9
+                            span #{user.name}
+                    .row.mb-3
+                        .col-sm-3
+                            strong E-posta:
+                        .col-sm-9
+                            span #{user.email}
+                    .row.mb-3
+                        .col-sm-3
+                            strong Kayıt Tarihi:
+                        .col-sm-9
+                            - const formattedDate = new Date(user.createdAt).toISOString().split('T')[0];
+                            span #{formattedDate}
+                    .row.mb-3
+                        .col-sm-3
+                            strong Toplam Görev:
+                        .col-sm-9
+                            span #{totalTasks}
+                    .row.mb-3
+                        .col-sm-3
+                            strong Tamamlanan Görev:
+                        .col-sm-9
+                            span #{completedTasks}

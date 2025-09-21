@@ -1,0 +1,26 @@
+extends ../layouts/main-layout
+
+block content
+    if errorMessage
+        .alert.alert-danger.alert-dismissible.fade.show.my-3(role="alert" id="errorMessage")
+            | #{errorMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .card.login-card
+        .card-body
+            h4.mb-3 Giriş yapın
+            form(action="/login" method="POST")
+                //- input(type="hidden" name="_csrf" value=csrfToken)
+                .form-group.row
+                    .col-sm-12
+                        input(type="email" name="email" placeholder="Email" value=(values && values.email) ? values.email : "")#email.form-input
+                .form-group.row.mt-3
+                    .col-sm-12
+                        input(type="password" name="password" placeholder="Şifre")#password.form-input
+                .form-group.row.mt-3
+                    a(href="/register").rl-link Hesabınız yok mu? Yeni bir hesap oluşturun!
+                .form-group.row.mt-3
+                    .text-end
+                        button.btn.btn-submit(type="submit") Giriş Yap
+                
+                

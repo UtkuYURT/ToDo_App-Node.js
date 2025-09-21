@@ -1,0 +1,32 @@
+extends ../layouts/main-layout
+
+block content
+    if errorMessage
+        .alert.alert-danger.alert-dismissible.fade.show.my-3(role="alert" id="errorMessage")
+            | #{errorMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .row.my-5
+        .col-md-3
+            include ../includes/profile-sidebar.pug
+        .col-md-9
+            .card
+                .card-header
+                    h4 Güvenlik Ayarları
+                .card-body
+                    form(action="/change-password" method="POST")
+                        input(type="hidden" name="userId" value=user._id)
+                        .mb-3.d-flex.align-items-center.gap-3
+                            label(for="currentPassword") Mevcut Şifre
+                            input.form-update(type="password" id="currentPassword" name="currentPassword" required)
+                        .mb-3.d-flex.align-items-center.gap-3
+                            label(for="newPassword") Yeni Şifre
+                            input.form-update(type="password" id="newPassword" name="newPassword" required)
+                        .mb-3.d-flex.align-items-center.gap-3
+                            label(for="newConfirmPassword") Yeni Şifre (Tekrar)
+                            input.form-update(type="password" id="newConfirmPassword" name="newConfirmPassword" required)
+                        .d-flex.gap-2
+                            button.btn.btn-submit(type="submit") Güncelle                    
+                    .card-footer.mt-3.bg-danger.text-white
+                        h5 Dikkat
+                        span Şifrenizi değiştirdikten sonra tekrar giriş yapmanız gerekecektir.

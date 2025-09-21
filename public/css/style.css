@@ -1,0 +1,139 @@
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav,
+footer {
+  background-color: #0056b3;
+}
+
+.login-card {
+  border-radius: 0;
+  width: 450px;
+  height: auto;
+  margin: 10rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #313131;
+  width: 100%;
+  padding: 0.4rem 0;
+}
+
+.form-input:focus {
+  outline: none !important;
+  border-bottom: 2px solid #0067b8 !important;
+}
+
+.btn-submit {
+  background-color: #0067b8;
+  color: white;
+  border-radius: 0;
+  width: 130px;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.rl-link {
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.free-text {
+  margin: 12rem auto;
+  text-align: center;
+}
+
+.free-text p {
+  font-size: 20px;
+  margin: 1.2rem auto;
+  text-align: justify;
+  max-width: 370px;
+}
+
+.free-img {
+  margin: 4rem auto;
+  object-fit: cover;
+}
+
+.task {
+  margin: 1.2rem 0;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 8px;
+  color: #313131;
+}
+
+.edit-task:focus {
+  outline: none !important;
+}
+
+.bg-date {
+  background-color: #0067b8;
+}
+
+.priority {
+  width: 60px;
+}
+
+.container-task {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.form-sort {
+  padding: 0.2rem;
+  border-radius: 6px;
+  border: 1px solid #f4f4f4;
+}
+
+.form-sort:hover {
+  border: 1px solid #0067b8;
+  cursor: pointer;
+}
+
+.form-sort:focus {
+  outline: none;
+}
+
+.edit-task {
+  border: none;
+  border-radius: 0;
+  width: 95%;
+}
+
+.fa-solid {
+  color: #313131;
+}
+
+.fa-solid:hover {
+  color: #0067b8;
+  cursor: pointer;
+}
+
+label {
+  margin: 0.3rem 0;
+  width: 130px;
+}
+
+.form-update {
+  margin: 0 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #0067b8;
+  padding: 0.3rem;
+  flex: 1;
+}
+
+.form-update:focus {
+  outline: none;
+  border: 2px solid #0067b8;
+}

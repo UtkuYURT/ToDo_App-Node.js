@@ -1,0 +1,40 @@
+extends ../layouts/main-layout
+
+include ../mixins/createTask
+
+block content
+    if successMessage
+        .alert.alert-success.alert-dismissible.fade.show.my-3(role="alert" id="successMessage") 
+            | #{successMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    if !user
+        .row
+            .col-6.free-text
+                h2 To-Do App'e hoş geldiniz!
+                p Görevlerinizi ekleyip yönetmeye başlamak için lütfen giriş yapın veya kayıt olun.
+                a.btn.btn-submit(href='/login') Giriş Yap
+                a.btn.btn-submit.ms-2(href='/register') Kayıt Ol
+            .col-6.free-img
+                img(src='img/index.png', alt='To-Do Illustration').img-fluid
+    else
+        .container-task.overflow-auto
+            form(action='/sort', method='POST')
+                .my-3.d-flex.align-items-center.justify-content-end
+                    select.form-sort(name="sort" id="sort" required)
+                        option(value="" disabled selected) Sırala
+                        option(value="new" selected=(sort === 'new') ? true : false) Eklenme Tarihine Göre (Yeni)
+                        option(value="old" selected=(sort === 'old') ? true : false) Eklenme Tarihine Göre (Eski)
+                        option(value="end" selected=(sort === 'end') ? true : false) Son Tarihe Göre
+                        option(value="pri" selected=(sort === 'pri') ? true : false) Önceliğe Göre
+            if tasks.length > 0
+                each task in tasks
+                    if !task.isCompleted
+                    +createTask(task)
+            else
+                .d-flex.flex-column.align-items-center.justify-content-center.my-5
+                    h3 Henüz eklenmiş bir göreviniz yok.
+                    a.btn.btn-submit.mt-3(href='/add-task') Görev Ekle
+
+block scripts
+    script(src="/js/sort.js") 

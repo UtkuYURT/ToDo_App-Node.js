@@ -1,0 +1,31 @@
+extends ../layouts/main-layout
+
+block content
+    if errorMessage
+        .alert.alert-danger.alert-dismissible.fade.show.my-3(role="alert" id="errorMessage")
+            | #{errorMessage}
+            button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+
+    .card.my-5
+        .card-header
+            h4 Görev Güncelle
+        .card-body
+            form(action='/edit-task', method='POST')
+                input(type='hidden' name='taskId' value=task._id)
+                input(type="hidden" name="sort" value=sort)
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="taskName") Görev Tanımı:
+                    input.form-update(type="text" id="taskName" name="taskName" required value=`${task.taskName}`)
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="priority") Öncelik:
+                    select.form-update(name="priority" id="priority" required)
+                        option(value="Düşük" selected=(task.priority === "Düşük")) Düşük
+                        option(value="Orta" selected=(task.priority === "Orta")) Orta
+                        option(value="Yüksek" selected=(task.priority === "Yüksek")) Yüksek
+                .mb-3.d-flex.align-items-center.gap-3
+                    label(for="endAt") Son Tarih:
+                    - const formattedDate = new Date(task.endAt).toISOString().split('T')[0];
+                    input.form-update(type="date" id="endAt" name="endAt" required value=`${formattedDate}`)
+
+                .d-flex.gap-2
+                    button.btn.btn-submit(type="submit") Güncelle

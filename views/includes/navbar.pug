@@ -1,0 +1,26 @@
+nav.navbar.navbar-expand-lg.navbar-dark
+  .container
+    a.navbar-brand(href="/") Todo App
+    button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNav
+        if isLoggedIn
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href="/") Tüm Görevler
+            li.nav-item
+              a.nav-link(href="/confirmed-tasks") Tamamlanan Görevler
+            li.nav-item
+              a.nav-link(href=`/add-task?sort=${sort || ''}`) Görev Ekle
+        
+        ul.navbar-nav.ms-auto
+          if !isLoggedIn
+            li.nav-item
+              a.nav-link(href="/login") Giriş Yap
+            li.nav-item
+              a.nav-link(href="/register") Kayıt Ol
+          else
+            li.nav-item
+              a.nav-link(href="/profile") #{user.email}
+            li.nav-item
+              a.nav-link(href="/logout") Çıkış Yap
